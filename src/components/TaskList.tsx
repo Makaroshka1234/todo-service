@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ITodo } from '../types/todo'
 import { Checkbox, IconButton } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
+
 
 interface TaskListProps {
     todos: ITodo[],
@@ -13,6 +14,7 @@ interface TaskListProps {
 
 const TaskList = ({ todos, deleteTodo, handleComplete, completeTask }: TaskListProps) => {
 
+  
 
     return (
         <ul className='bg-slate-50 max-w-lg'>

@@ -5,7 +5,9 @@ import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
 
 import TaskList from '../components/TaskList'
 import { ITodo } from '../types/todo'
+import { PieChart } from '@mui/x-charts';
 
+import useCheckedTodos from '../hooks/useCheckedTodos';
 
 
 
@@ -15,6 +17,7 @@ const Home = () => {
     const [inputErr, setInputErr] = useState<boolean>(false)
     const [completeTask, setCompleteTask] = useState<boolean>(false)
 
+    const { checkedTodos, uncheckedTodos, separateTodos } = useCheckedTodos(todos);
     const { enqueueSnackbar } = useSnackbar();
 
     const nextId = useRef(0)
@@ -29,6 +32,13 @@ const Home = () => {
             setInputErr(false)
         }
     }, [inputErr])
+
+    useEffect(() => {
+        separateTodos();
+    }, [separateTodos]);
+
+
+
 
 
 
@@ -72,6 +82,9 @@ const Home = () => {
         setTodos(updatedTodos);
     }
 
+    const completedCount = checkedTodos.length
+    const unCompletedCount = uncheckedTodos.length
+
     return (
         <div className="flex justify-center items-center bg-slate-400 w-full h-full">
             <div className='flex flex-col items-center gap-2 bg-cyan-300 mx-auto p-4 max-w-xl container'>
@@ -79,7 +92,23 @@ const Home = () => {
                     <TextField label='Todo title' value={inputValue} onChange={handleChange} />
                     <Button variant="outlined" onClick={handleClick}>Add Todo</Button>
                 </div>
+                <PieChart
 
+                    series={[
+                        {
+                            data: [
+                                { id: 0, value: completedCount, label: 'Complete' },
+                                { id: 1, value: unCompletedCount, label: 'UnComplete' },
+
+                            ],
+                            innerRadius: 15,
+                            outerRadius: 70,
+                            paddingAngle: 2,
+                            cornerRadius: 5,
+                        },
+                    ]}
+
+                />
                 <TaskList todos={todos} deleteTodo={deleteTodo} handleComplete={handleComplete} completeTask={completeTask} />
             </div>
 
