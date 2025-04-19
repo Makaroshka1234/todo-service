@@ -1,19 +1,28 @@
 import React from 'react';
-
-import './App.css';
+import { SnackbarProvider } from 'notistack';
 import { Route, Routes } from 'react-router';
+
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
-import { SnackbarProvider } from 'notistack';
+
+
+import './App.css';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+
+
+
 
 function App() {
   return (
-    <SnackbarProvider maxSnack={3}>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
-    </SnackbarProvider>
+    <Provider store={store}>
+      <SnackbarProvider maxSnack={3}>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </SnackbarProvider>
+    </Provider>
   );
 }
 

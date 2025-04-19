@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useMemo } from 'react';
 
 interface ITodo {
     id: number;
@@ -6,22 +6,26 @@ interface ITodo {
     completed: boolean;
 }
 
-
-
 const useCheckedTodos = (todos: ITodo[]) => {
-    const [checkedTodos, setCheckedTodos] = useState<ITodo[]>([]);
-    const [uncheckedTodos, setUncheckedTodos] = useState<ITodo[]>([]);
+    const { checkedTodos, uncheckedTodos } = useMemo(() => {
+        const checked = [] as ITodo[];
+        const unchecked = [] as ITodo[];
 
-    // Оновлюємо масиви перевірених і неперевірених елементів
-    const separateTodos = useCallback(() => {
-        const checked = todos.filter(todo => todo.completed);
-        const unchecked = todos.filter(todo => !todo.completed);
+        todos.forEach(todo => {
+            if (todo.completed) {
+                checked.push(todo);
+            } else {
+                unchecked.push(todo);
+            }
+        });
 
-        setCheckedTodos(checked);
-        setUncheckedTodos(unchecked);
+        return {
+            checkedTodos: checked,
+            uncheckedTodos: unchecked,
+        };
     }, [todos]);
 
-    return { checkedTodos, uncheckedTodos, separateTodos };
+    return { checkedTodos, uncheckedTodos };
 };
 
-export default useCheckedTodos
+export default useCheckedTodos;
