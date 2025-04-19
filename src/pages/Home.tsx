@@ -68,8 +68,8 @@ const Home = () => {
 
 
     return (
-        <div className="flex justify-center items-center bg-slate-400 w-full h-full">
-            <div className='flex flex-col items-center gap-2 bg-cyan-300 mx-auto p-4 max-w-xl container'>
+        <div className='flex justify-center items-center bg-blue-400 w-full min-h-full'>
+            <div className='flex flex-col items-center gap-2 bg-cyan-300 p-4 max-w-xl container'>
                 <div className="flex justify-center items-center gap-4 mx-auto" >
                     <TextField label='Todo title' value={inputValue} onChange={handleChange} />
                     <Button variant="outlined" onClick={handleAdd}>Add Todo</Button>
@@ -93,8 +93,8 @@ const Home = () => {
                 />
                 <TaskList />
             </div>
-
         </div>
+
     )
 }
 

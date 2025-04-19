@@ -15,14 +15,16 @@ import { store } from './store/store';
 
 function App() {
   return (
-    <Provider store={store}>
-      <SnackbarProvider maxSnack={3}>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </SnackbarProvider>
-    </Provider>
+    < >
+      <Provider store={store}>
+        <SnackbarProvider maxSnack={3}>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </SnackbarProvider>
+      </Provider>
+    </>
   );
 }
 

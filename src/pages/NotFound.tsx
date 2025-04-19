@@ -1,9 +1,10 @@
 import React from 'react'
+import NotFoundMessage from '../components/NotFoundMessage'
 
 const NotFound = () => {
     return (
-        <div>
-            Not found page
+        <div className='flex justify-center items-center bg-blue-400 w-full min-h-full'>
+            <NotFoundMessage />
         </div>
     )
 }
