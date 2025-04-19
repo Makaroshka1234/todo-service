@@ -3,19 +3,17 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
 
-import { ITodo } from '../../types/todo'
+import { ITodo, TodoListState } from '../../types/todo'
 
 
 
 
 
 // Define a type for the slice state
-interface TodoListState {
-    id: number,
-    title: string,
-    completed: boolean,
-    todos: ITodo[],
-    inputError: boolean,
+
+
+interface allTodosList {
+    allTodosLists: TodoListState[]
 }
 
 // Define the initial state using that type
@@ -63,7 +61,6 @@ export const todoSlice = createSlice({
 
 export const { addTodo, deleteTodo, changeCompletedTodo } = todoSlice.actions
 
-// Other code such as selectors can use the imported `RootState` type
 
 
 export default todoSlice.reducer
