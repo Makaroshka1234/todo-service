@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from "motion/react"
-import { duration } from '@mui/material'
+
 const NotFoundMessage = () => {
     return (
         <motion.div initial={{ y: -1000 }} animate={{ y: 0, opacity: 1 }} transition={

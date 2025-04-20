@@ -1,12 +1,9 @@
 import { useMemo } from 'react';
+import { ITodo } from '../types/todo';
 
-interface ITodo {
-    id: number;
-    title: string;
-    completed: boolean;
-}
 
-const useCheckedTodos = (todos: ITodo[]) => {
+
+const useCheckedTodos = (todos: ITodo[] = []) => {
     const { checkedTodos, uncheckedTodos } = useMemo(() => {
         const checked = [] as ITodo[];
         const unchecked = [] as ITodo[];
@@ -20,8 +17,8 @@ const useCheckedTodos = (todos: ITodo[]) => {
         });
 
         return {
-            checkedTodos: checked,
-            uncheckedTodos: unchecked,
+            checkedTodos: checked.length,
+            uncheckedTodos: unchecked.length,
         };
     }, [todos]);
 

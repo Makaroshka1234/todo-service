@@ -14,4 +14,5 @@ export interface TodoListState {
 export interface AllTodoLists {
     title: string,
     lists: TodoListState[],
+    inputError: boolean,
 }

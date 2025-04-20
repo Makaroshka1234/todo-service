@@ -1,31 +1,40 @@
 import React, { useEffect } from 'react'
-import { ITodo } from '../types/todo'
-import { Checkbox, IconButton } from '@mui/material'
-import DeleteIcon from '@mui/icons-material/Delete';
-import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
-import { changeCompletedTodo, deleteTodo } from '../store/slices/todoSlice';
 
-import { AnimatePresence, motion } from "motion/react"
+import { ITodo } from '../types/todo'
+import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
+import { useParams } from 'react-router';
 import { listVariants } from '../animation/animation';
 
-interface TaskListProps {
-    todos: ITodo[],
-    completeTask: boolean,
-    deleteTodo: (id: number) => void,
-    handleComplete: (id: number) => void,
-}
+
+
+import { Checkbox, IconButton } from '@mui/material'
+import DeleteIcon from '@mui/icons-material/Delete';
+import { AnimatePresence, motion } from "motion/react"
+
+
+
+import { changeCompletedTodo, deleteTodo } from '../store/slices/todoListsSlice';
+
+
+
+
+
+
+
 
 
 const TaskList = () => {
+    const { id } = useParams()
+
     const dispatch = useAppDispatch()
-    const { inputError, todos, } = useAppSelector(state => state.todo)
+    const list = useAppSelector(state => state.todoLists.lists.find((l) => l.id === Number(id)))
 
 
     return (
 
         <ul className='flex flex-col gap-4 max-w-lg'>
             <AnimatePresence>
-                {todos.map((item: ITodo, index: number) => {
+                {list?.todos.map((item: ITodo, index: number) => {
                     return <motion.li
                         variants={listVariants}
                         initial='hidden'
@@ -36,10 +45,10 @@ const TaskList = () => {
                         <IconButton onClick={() => {
 
 
-                            dispatch(deleteTodo(item.id));
+                            dispatch(deleteTodo({ listId: Number(id), todoId: item.id }));
 
                         }}> <DeleteIcon /></IconButton>
-                        <Checkbox color="success" onChange={() => dispatch(changeCompletedTodo(item.id))} checked={item.completed} />
+                        <Checkbox color="success" onChange={() => dispatch(changeCompletedTodo({ listId: Number(id), todoId: item.id }))} checked={item.completed} />
                     </motion.li>
                 })}
             </AnimatePresence>
