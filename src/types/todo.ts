@@ -7,7 +7,11 @@ export interface ITodo {
 export interface TodoListState {
     id: number,
     title: string,
-    completed: boolean,
     todos: ITodo[],
     inputError: boolean,
+}
+
+export interface AllTodoLists {
+    title: string,
+    lists: TodoListState[],
 }

@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound';
 import './App.css';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import ListPage from './pages/ListPage';
 
 
 
@@ -21,6 +22,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='*' element={<NotFound />} />
+            <Route path='/lists/:id' element={<ListPage />} />
           </Routes>
         </SnackbarProvider>
       </Provider>

@@ -1,25 +1,14 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
-
-import { Alert, Button, TextField } from '@mui/material'
-import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
-
+import { Button, TextField } from '@mui/material'
+import { PieChart } from '@mui/x-charts'
+import React, { ChangeEvent, useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
+import { useSnackbar } from 'notistack'
+import useCheckedTodos from '../hooks/useCheckedTodos'
+import { addTodo } from '../store/slices/todoSlice'
 import TaskList from '../components/TaskList'
-import { ITodo } from '../types/todo'
-import { PieChart } from '@mui/x-charts';
+import { useParams } from 'react-router'
 
-import useCheckedTodos from '../hooks/useCheckedTodos';
-import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
-import { addTodo } from '../store/slices/todoSlice';
-import AddTaskList from '../components/AddTaskList';
-
-
-
-
-
-
-const Home = () => {
-
-
+const ListPage = () => {
 
     const dispatch = useAppDispatch()
 
@@ -34,11 +23,6 @@ const Home = () => {
 
     const completedCount = checkedTodos.length
     const unCompletedCount = uncheckedTodos.length
-
-    useEffect(() => {
-        console.log('update', todos)
-    }, [todos])
-
     useEffect(() => {
         if (inputError) {
             enqueueSnackbar('Input value error', { variant: 'error', autoHideDuration: 1500, });
@@ -48,7 +32,7 @@ const Home = () => {
 
 
 
-
+    const { id } = useParams()
 
 
 
@@ -65,22 +49,11 @@ const Home = () => {
         setInputValue('');
     };
 
-
-
-
-
-
-
     return (
         <div className='flex flex-col justify-center items-center bg-blue-400 w-full min-h-full'>
-
             <div className='flex flex-col items-center gap-2 bg-cyan-300 p-4 max-w-xl container'>
 
-
-                <AddTaskList />
-
-
-                {/* <div className="flex justify-center items-center gap-4 mx-auto" >
+                <div className="flex justify-center items-center gap-4 mx-auto" >
                     <TextField label='Todo title' value={inputValue} onChange={handleChange} />
                     <Button variant="outlined" onClick={handleAdd}>Add Todo</Button>
                 </div>
@@ -101,11 +74,10 @@ const Home = () => {
                     ]}
 
                 />
-                <TaskList /> */}
+                <TaskList />
             </div>
         </div>
-
     )
 }
 
-export default Home
+export default ListPage

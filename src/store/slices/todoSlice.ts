@@ -7,20 +7,9 @@ import { ITodo, TodoListState } from '../../types/todo'
 
 
 
-
-
-// Define a type for the slice state
-
-
-interface allTodosList {
-    allTodosLists: TodoListState[]
-}
-
-// Define the initial state using that type
 const initialState: TodoListState = {
     id: 0,
     title: '',
-    completed: false,
     todos: [],
     inputError: false
 }
@@ -30,6 +19,8 @@ export const todoSlice = createSlice({
 
     initialState,
     reducers: {
+
+
         addTodo(state, action: PayloadAction<string>) {
             if (action.payload !== '') {
                 const newTodo: ITodo = {
@@ -59,7 +50,7 @@ export const todoSlice = createSlice({
     },
 })
 
-export const { addTodo, deleteTodo, changeCompletedTodo } = todoSlice.actions
+export const { addTodo, deleteTodo, changeCompletedTodo, } = todoSlice.actions
 
 
 
