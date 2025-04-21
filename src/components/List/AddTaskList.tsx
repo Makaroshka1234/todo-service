@@ -1,8 +1,8 @@
 import { Button, TextField } from '@mui/material'
 import React, { ChangeEvent, useState } from 'react'
 
-import { useAppDispatch } from '../hooks/reduxHooks';
-import { addTodoList } from '../store/slices/todoListsSlice';
+import { useAppDispatch } from '../../hooks/reduxHooks';
+import { addTodoList } from '../../store/slices/todoListsSlice';
 import TodoLists from './TodoLists';
 
 
@@ -27,7 +27,7 @@ const AddTaskList = () => {
         <>
             <div className="flex justify-center items-center gap-4 mx-auto" >
                 <TextField label='TodoList title' value={inputValue} onChange={handleChange} />
-                <Button variant="outlined" onClick={() => handleAdd()}>Add Todo</Button>
+                <Button variant="outlined" onClick={() => handleAdd()}>Add TodoList</Button>
             </div>
             <TodoLists />
         </>

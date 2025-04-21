@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
 
 
 
-import AddTaskList from '../components/AddTaskList';
+import AddTaskList from '../components/List/AddTaskList';
 import Header from '../components/Header'
 
 

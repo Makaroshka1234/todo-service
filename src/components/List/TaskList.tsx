@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 
-import { ITodo } from '../types/todo'
-import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
+import { ITodo } from '../../types/todo'
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { useParams } from 'react-router';
-import { listVariants } from '../animation/animation';
+import { listVariants } from '../../animation/animation';
 
 
 
@@ -13,7 +13,7 @@ import { AnimatePresence, motion } from "motion/react"
 
 
 
-import { changeCompletedTodo, deleteTodo } from '../store/slices/todoListsSlice';
+import { changeCompletedTodo, deleteTodo } from '../../store/slices/todoListsSlice';
 
 
 

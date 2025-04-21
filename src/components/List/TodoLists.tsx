@@ -1,6 +1,6 @@
 import React from 'react'
-import { useAppSelector } from '../hooks/reduxHooks'
-import { TodoListState } from '../types/todo'
+import { useAppSelector } from '../../hooks/reduxHooks'
+import { TodoListState } from '../../types/todo'
 import { Link } from 'react-router'
 
 const TodoLists = () => {

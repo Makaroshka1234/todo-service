@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
 import useCheckedTodos from '../hooks/useCheckedTodos'
 import { addTodo } from '../store/slices/todoListsSlice'
 
-import TaskList from '../components/TaskList'
+import TaskList from '../components/List/TaskList'
 import Header from '../components/Header'
 
 const ListPage = () => {
