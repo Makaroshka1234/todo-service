@@ -32,7 +32,7 @@ const TaskList = () => {
 
     return (
 
-        <ul className='flex flex-col gap-4 max-w-lg'>
+        <ul className='flex flex-col gap-4 mb-3 max-w-lg'>
             <AnimatePresence>
                 {list?.todos.map((item: ITodo, index: number) => {
                     return <motion.li

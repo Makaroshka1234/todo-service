@@ -25,11 +25,15 @@ const AddTaskList = () => {
 
     return (
         <>
-            <div className="flex justify-center items-center gap-4 mx-auto" >
-                <TextField label='TodoList title' value={inputValue} onChange={handleChange} />
-                <Button variant="outlined" onClick={() => handleAdd()}>Add TodoList</Button>
+            <div className="flex flex-col gap-6 bg-slate-50 container" >
+                
+                <div className='flex items-center gap-2 p-3'>
+                    <TextField label='TodoList title' value={inputValue} onChange={handleChange} />
+                    <Button variant="outlined" onClick={() => handleAdd()}>Add TodoList</Button>
+                </div>
+                <TodoLists />
             </div>
-            <TodoLists />
+
         </>
     )
 }

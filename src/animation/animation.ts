@@ -1,3 +1,4 @@
+import { Opacity } from "@mui/icons-material"
 import { duration } from "@mui/material"
 import { delay } from "motion"
 import { motion } from "motion/react"
@@ -20,4 +21,17 @@ export const listVariants = {
         }
     }
 
+}
+
+
+export const TodoListVariants = {
+    visible: {
+        opacity: 1,
+        transition: {
+            duration: 0.3
+        }
+    },
+    hidden: {
+        opacity: 0
+    }
 }

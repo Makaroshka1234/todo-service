@@ -10,6 +10,7 @@ import './App.css';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import ListPage from './pages/ListPage';
+import MyLists from './pages/MyLists';
 
 
 
@@ -23,6 +24,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='*' element={<NotFound />} />
             <Route path='/lists/:id' element={<ListPage />} />
+            <Route path='/lists' element={<MyLists />} />
           </Routes>
         </SnackbarProvider>
       </Provider>

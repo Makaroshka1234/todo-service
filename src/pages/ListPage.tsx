@@ -11,6 +11,7 @@ import { addTodo } from '../store/slices/todoListsSlice'
 
 import TaskList from '../components/List/TaskList'
 import Header from '../components/Header'
+import Chart from '../components/Chart'
 
 const ListPage = () => {
 
@@ -34,33 +35,32 @@ const ListPage = () => {
     };
 
     return (
-        <div className='flex flex-col justify-center items-center bg-blue-400 w-full min-h-full'>
+        <>
             <Header />
-            <div className='flex flex-col items-center gap-2 bg-cyan-300 p-4 max-w-xl container'>
 
-                <div className="flex justify-center items-center gap-4 mx-auto" >
-                    <TextField label='Todo title' value={inputValue} onChange={handleChange} />
-                    <Button variant="outlined" onClick={handleAdd}>Add Todo</Button>
+            <div className='flex flex-col gap-6 px-8 py-11 container'>
+                <div className='flex items-center gap-2 mb-5'>
+                    <h3>Назва списку</h3>
+                    <p>{list?.title}</p>
                 </div>
-                <PieChart
-                    series={[
-                        {
-                            data: [
-                                { id: 0, value: checkedTodos, label: 'Complete' },
-                                { id: 1, value: uncheckedTodos, label: 'UnComplete' },
-
-                            ],
-                            innerRadius: 15,
-                            outerRadius: 70,
-                            paddingAngle: 2,
-                            cornerRadius: 5,
-                        },
-                    ]}
-
-                />
-                <TaskList />
+                <div className="flex justify-around px-3"  >
+                    <div className='flex flex-col gap-3'>
+                        <div className='flex items-center gap-3 mb-3 max-h-8'>
+                            <TextField label='Todo title' value={inputValue} onChange={handleChange} />
+                            <Button variant="outlined" onClick={handleAdd}>Add Todo</Button>
+                        </div>
+                        <TaskList />
+                    </div>
+                    <div className='flex flex-col justify-center gap-3 max-h-40'>
+                        <p>Діаграмма завдань</p>
+                        <Chart checkedTodos={checkedTodos} uncheckedTodos={uncheckedTodos} />
+                    </div>
+                </div>
             </div>
-        </div>
+
+
+
+        </>
     )
 }
 
