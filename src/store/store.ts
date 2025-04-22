@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-
 import todoLists from './slices/todoListsSlice'
+import user from './slices/userSlice'
 
 export const store = configureStore({
     reducer: {
         todoLists,
+        user,
     },
 })
 

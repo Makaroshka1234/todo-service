@@ -16,3 +16,4 @@ export interface AllTodoLists {
     lists: TodoListState[],
     inputError: boolean,
 }
+

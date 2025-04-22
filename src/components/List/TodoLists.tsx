@@ -8,6 +8,7 @@ import { deleteTodoList } from '../../store/slices/todoListsSlice'
 import { IconButton } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
 import Icon from '@mui/material/Icon';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 const TodoLists = () => {
     const { lists } = useAppSelector(state => state.todoLists)
     const dispatch = useAppDispatch()
@@ -26,7 +27,9 @@ const TodoLists = () => {
                                 <DeleteIcon />
                             </IconButton>
                             <Link to={`/lists/${item.id}`}>
-                                <Icon color="primary">add_circle</Icon>
+                                <IconButton>
+                                    <ArrowForwardIcon />
+                                </IconButton>
                             </Link>
                         </div>
                     </div>

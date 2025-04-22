@@ -5,6 +5,11 @@ import App from './App';
 
 import { BrowserRouter } from 'react-router';
 
+import './firebase'
+
+
+
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -16,4 +21,3 @@ root.render(
   </BrowserRouter>
 );
 
-// If you want to start measuring performance in your app, pass a functio

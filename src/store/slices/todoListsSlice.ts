@@ -37,14 +37,16 @@ export const todoListsSlice = createSlice({
         addTodo(state, action: PayloadAction<{ listId: number, title: string }>) {
             const { listId, title } = action.payload
             const list = state.lists.find(list => list.id === listId);
-            if (list) {
-                const newTodo: ITodo = {
-                    id: Date.now(),
-                    title: title,
-                    completed: false
-                };
-                list.todos.push(newTodo);
-                state.inputError = false;
+            if (title.trim() !== '') {
+                if (list) {
+                    const newTodo: ITodo = {
+                        id: Date.now(),
+                        title: title,
+                        completed: false
+                    };
+                    list.todos.push(newTodo);
+                    state.inputError = false;
+                }
             }
         },
         deleteTodo(state, action: PayloadAction<{ listId: number; todoId: number }>) {
