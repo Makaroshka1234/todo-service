@@ -29,6 +29,11 @@ export const todoListsSlice = createSlice({
                 state.lists?.push(newList)
             }
         },
+        deleteTodoList(state, action: PayloadAction<{ id: number }>) {
+            const { id } = action.payload
+            state.lists = state.lists.filter(list => list.id !== id)
+
+        },
         addTodo(state, action: PayloadAction<{ listId: number, title: string }>) {
             const { listId, title } = action.payload
             const list = state.lists.find(list => list.id === listId);
@@ -63,7 +68,7 @@ export const todoListsSlice = createSlice({
     },
 })
 
-export const { addTodo, addTodoList, deleteTodo, changeCompletedTodo } = todoListsSlice.actions
+export const { addTodo, addTodoList, deleteTodoList, deleteTodo, changeCompletedTodo } = todoListsSlice.actions
 
 
 

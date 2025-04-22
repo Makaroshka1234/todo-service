@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-const header = () => {
+const Header = () => {
     return (
         <header className='flex items-center bg-blue-600 mb-5'>
             <div className="flex justify-around items-center w-full header__inner">
@@ -16,7 +16,7 @@ const header = () => {
     )
 }
 
-export default header
+export default Header
 
 
 
