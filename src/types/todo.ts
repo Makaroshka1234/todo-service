@@ -1,3 +1,5 @@
+import { UserListRole } from "./user";
+
 export interface ITodo {
     id: number,
     title: string,
@@ -5,15 +7,18 @@ export interface ITodo {
 }
 
 export interface TodoListState {
-    id: number,
+    id: string,
     title: string,
     todos: ITodo[],
     inputError: boolean,
+    userId: string | null,
+    member: UserListRole[],
 }
 
 export interface AllTodoLists {
+    userId: string,
     title: string,
     lists: TodoListState[],
-    inputError: boolean,
+
 }
 

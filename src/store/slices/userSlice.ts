@@ -10,9 +10,10 @@ import { User } from '../../types/user'
 
 
 const initialState: User = {
-    id: null,
+    id: '',
     email: null,
-    token: null
+    token: null,
+    roles: {}
 }
 
 export const userSlice = createSlice({
@@ -20,20 +21,32 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setUser(state, action: PayloadAction<User>) {
-            state.email = action.payload.email
-            state.id = action.payload.id
-            state.token = action.payload.token
+            const userData = action.payload;
+            state.email = userData.email;
+            state.id = userData.id;
+            state.token = userData.token;
+            state.roles = userData.roles;
+
+            // Зберігаємо в localStorage
+            localStorage.setItem('user', JSON.stringify(userData));
         },
         removeUser(state) {
-            state.email = null
-            state.id = null
+            state.email = null;
+            state.id = '';
+            state.roles = {};
+            state.token = null;
 
-            state.token = null
+            // Видаляємо з localStorage
+            localStorage.removeItem('user');
+        },
+        setUserRole(state, action: PayloadAction<{ listId: string; role: 'admin' | 'viewer' }>) {
+            const { listId, role } = action.payload
+            state.roles[listId] = role
         }
     },
 })
 
-export const { setUser, removeUser } = userSlice.actions
+export const { setUser, removeUser, setUserRole } = userSlice.actions
 
 
 
