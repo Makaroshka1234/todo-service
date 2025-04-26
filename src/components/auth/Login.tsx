@@ -13,7 +13,8 @@ const LoginForm = () => {
 
     const auth = getAuth()
     const navigate = useNavigate()
-    function handleLogin(email: string, password: string) {
+    function handleLogin(email: string, password: string,) {
+
         signInWithEmailAndPassword(auth, email, password)
             .then(async ({ user }) => {
                 const token = await user.getIdToken();
@@ -46,9 +47,9 @@ const LoginForm = () => {
 
 
     return (
-        <div>
-            <AuthForm title='login' handleClick={handleLogin} />
-        </div>
+
+        <AuthForm title='login' handleClick={handleLogin} />
+
     )
 }
 

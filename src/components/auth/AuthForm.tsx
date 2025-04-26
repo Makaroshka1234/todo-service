@@ -1,52 +1,92 @@
 import { Box, Button, TextField } from '@mui/material'
 import React, { useState } from 'react'
+import { useForm } from 'react-hook-form';
 
+interface AuthForm {
+    email: string,
+    password: string
+}
 
 interface AuthFormProps {
     title: string;
     handleClick: (email: string, password: string) => void
 }
 
-const AuthForm = ({ title, handleClick }: AuthFormProps) => {
-    const [email, setEmail] = useState<string>('')
-    const [password, setPassword] = useState<string>('')
 
+const AuthForm = ({ title, handleClick }: AuthFormProps) => {
+
+    const { register, handleSubmit, formState } = useForm<AuthForm>(
+        {
+            mode: 'onChange',
+        }
+    )
+
+    const emailError = formState.errors.email?.message
+    const passError = formState.errors.password?.message
+
+    function onSubmit(data: AuthForm): void {
+
+        handleClick(data.email, data.password)
+    }
 
     return (
         <Box
-            component="div"
+            component="form"
+            onSubmit={handleSubmit(onSubmit)}
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center',
+                maxWidth: 600,
                 justifyContent: 'center',
-                gap: 4
+                padding: 5,
+                alignItems: 'center'
+
             }}
         >
-            <p>{title}</p>
-            <TextField
-                label="Email"
-                type="email"
-                variant="outlined"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-            />
-            <TextField
-                label="Password"
-                type="text"
-                variant="outlined"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-            />
+            <p className='mb-1'>{title}</p>
+            <div className='flex flex-col justify-center items-center gap-2.5 mb-2'>
+                <TextField
+                    sx={{
+                        maxWidth: 200
+                    }}
+                    label="Email"
+                    type="email"
+                    variant="outlined"
+                    {...register('email', {
+                        required: 'This field required',
+                        pattern: {
+                            value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                            message: 'Invalid email adresss'
+                        }
+                    })}
+
+                />
+                {emailError && <p className='text-red-600'>{emailError}</p>}
+                <TextField
+                    sx={{
+                        maxWidth: 200
+                    }}
+                    label="Password"
+                    type="text"
+                    variant="outlined"
+                    {...register('password', {
+                        required: 'this field required',
+                        pattern: {
+                            value: /^.{6,}$/,
+                            message: 'Password must be 6 characters long',
+                        }
+                    })}
+                />
+                {passError && <p className='text-red-600'>{passError}</p>}
+            </div>
+
             <Button
-                onClick={() => handleClick(email, password)}
+                type='submit'
                 variant="contained" size="medium">
                 {title}
             </Button>
 
-        </Box>
+        </Box >
     )
 }
 

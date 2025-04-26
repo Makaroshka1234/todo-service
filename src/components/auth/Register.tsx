@@ -13,6 +13,7 @@ const RegisterForm = () => {
 
     function handleRegister(email: string, password: string) {
         const auth = getAuth();
+
         createUserWithEmailAndPassword(auth, email, password)
             .then(async ({ user }) => {
                 const token = await user.getIdToken();
@@ -31,9 +32,9 @@ const RegisterForm = () => {
     }
 
     return (
-        <div>
-            <AuthForm title='Register' handleClick={handleRegister} />
-        </div>
+
+        <AuthForm title='Register' handleClick={handleRegister} />
+
     );
 };
 

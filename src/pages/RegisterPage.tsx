@@ -7,10 +7,12 @@ import RegisterForm from '../components/auth/Register'
 
 const RegisterPage = () => {
     return (
-        <div>
+        <>
             <Header />
-            <RegisterForm />
-        </div>
+            <div className='flex justify-center items-center'>
+                <RegisterForm />
+            </div>
+        </>
     )
 }
 

@@ -16,9 +16,10 @@ const Header = () => {
                 <p className="logo-text">Todo service</p>
                 <nav className="flex gap-2 py-3 nav--list">
                     <Link to={'/'}><li className="list-item">Home</li></Link>
-                    <Link to={'/lists'}><li className="list-item">My lists</li></Link>
+
                     {isAuth ?
                         <>
+                            <Link to={'/lists'}><li className="list-item">My lists</li></Link>
                             <li>{email}</li>
                             <li>
                                 <Button variant='outlined' sx={{

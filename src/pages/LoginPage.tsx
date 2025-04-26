@@ -12,15 +12,13 @@ import LoginForm from '../components/auth/Login';
 const LoginPage = () => {
 
 
-
-
-
-
     return (
-        <div>
+        <>
             <Header />
-            <LoginForm />
-        </div>
+            <div className='flex justify-center items-center'>
+                <LoginForm />
+            </div>
+        </>
     )
 }
 
