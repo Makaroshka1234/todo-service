@@ -6,6 +6,7 @@ import { listVariants } from '../../animation/animation'
 
 import { Checkbox, IconButton } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit';
 import { AnimatePresence, motion } from "motion/react"
 
 import {
@@ -13,13 +14,31 @@ import {
     toggleTodoCompletedInFirestore
 } from '../../store/slices/todoListsSlice'
 
-const TaskList = () => {
+interface TaskListProps {
+    editTodoValue: string,
+    setEditTodoValue: (value: string) => void,
+    isEdit: boolean,
+    setIsEdit: (value: boolean) => void,
+    currentEditingTodoId: string,
+    setCurrentEditingTodoId: (value: string) => void,
+}
+
+const TaskList = ({ editTodoValue, setEditTodoValue, isEdit, setIsEdit, currentEditingTodoId, setCurrentEditingTodoId }: TaskListProps) => {
     const { id } = useParams()
     const dispatch = useAppDispatch()
 
     const userId = useAppSelector(state => state.user.id)
     const role = useAppSelector(state => state.user.roles[id || ''])
     const list = useAppSelector(state => state.todoLists.lists.find((l) => String(l.id) === id))
+
+    function handleChange(title: string, id: number) {
+
+        setEditTodoValue(title)
+        setIsEdit(!isEdit)
+
+        setCurrentEditingTodoId(id.toString())
+    }
+
 
     return (
         <ul className='flex flex-col gap-4 mb-3 max-w-lg'>
@@ -52,7 +71,9 @@ const TaskList = () => {
                                 <DeleteIcon />
                             </IconButton>
                         )}
-
+                        <IconButton onClick={() => handleChange(item.title, item.id)}>
+                            <EditIcon />
+                        </IconButton>
                         {/* Зміна статусу доступна всім */}
                         <Checkbox
                             color="success"

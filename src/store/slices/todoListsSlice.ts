@@ -38,7 +38,7 @@ export const addTodoListToFirestore = createAsyncThunk(
                 createdAt: new Date(),
                 member: [
                     {
-                        id: Date.now().toString(), // або Date.now().toString()
+                        id: Date.now().toString(),
                         userId,
                         email: userEmail,
                         role: 'admin',
@@ -176,7 +176,7 @@ export const toggleTodoCompletedInFirestore = createAsyncThunk<
         const newCompleted = !todo.completed;
 
         try {
-            const listRef = doc(db, `users/${list.userId}/todoLists/${listId}`); // <-- тут !!!
+            const listRef = doc(db, `users/${list.userId}/todoLists/${listId}`);
 
             const listSnap = await getDoc(listRef);
             if (!listSnap.exists()) {
@@ -244,12 +244,48 @@ export const inviteUserToList = createAsyncThunk<void, InviteUserParams>(
                 member: updatedMembers,
             });
 
-            // 🎯 Можна також оновити roles для користувача (наприклад, в Firestore окремо або локально)
+
         } catch (error: any) {
             return thunkAPI.rejectWithValue(error.message);
         }
     }
 );
+
+
+export const changeTodoTitleFireStore = createAsyncThunk<
+    { id: string; title: string },                  // Що повертаємо
+    { userId: string; listId: string; todoId: string; newTitle: string },  // Що передаємо
+    { rejectValue: string }
+>(
+    'todoLists/changeTodoTitleFireStore',
+    async ({ userId, listId, todoId, newTitle }, { rejectWithValue }) => {
+        try {
+            const listRef = doc(db, `users/${userId}/todoLists/${listId}`);
+
+            const listSnap = await getDoc(listRef);
+            if (!listSnap.exists()) {
+                return rejectWithValue('List not found');
+            }
+
+            const listData = listSnap.data();
+            const todos = listData?.todos || [];
+
+            const updatedTodos = todos.map((todo: any) =>
+                String(todo.id) === String(todoId) ? { ...todo, title: newTitle } : todo
+            );
+
+            await updateDoc(listRef, { todos: updatedTodos });
+
+            return { id: todoId, title: newTitle };
+        } catch (error) {
+            console.error('Failed to update todo title:', error);
+            return rejectWithValue('Failed to update title');
+        }
+    }
+);
+
+
+
 
 export const todoListsSlice = createSlice({
     name: 'todolists',
@@ -257,6 +293,18 @@ export const todoListsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
+            .addCase(changeTodoTitleFireStore.pending, (state, action) => {
+                const { meta } = action;
+                const { userId, listId, todoId, newTitle } = meta.arg;
+
+                const list = state.lists.find((l) => l.id === listId);
+                if (!list) return;
+
+                const todo = list.todos.find((t) => String(t.id) === String(todoId));
+                if (todo) {
+                    todo.title = newTitle; // миттєво оновлюємо в сторанжі
+                }
+            })
             .addCase(inviteUserToList.fulfilled, (state, action) => {
                 // Нічого не треба, бо onSuccess ми просто показуємо snackbar
             })

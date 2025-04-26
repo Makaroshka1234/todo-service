@@ -5,32 +5,44 @@ import { useSnackbar } from 'notistack'
 
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
 import useCheckedTodos from '../hooks/useCheckedTodos'
-import { addTodoToFirestore, inviteUserToList } from '../store/slices/todoListsSlice'
+import { addTodoToFirestore, changeTodoTitleFireStore, inviteUserToList } from '../store/slices/todoListsSlice'
 
 import TaskList from '../components/List/TaskList'
 import Header from '../components/Header'
 import Chart from '../components/Chart'
+import MemberList from '../components/List/MemberList'
 
 const ListPage = () => {
     const dispatch = useAppDispatch()
     const { enqueueSnackbar } = useSnackbar()
+
+
 
     const { id } = useParams()
     const [inputValue, setInputValue] = useState<string>('')
     const [inviteEmail, setInviteEmail] = useState<string>('')
     const [inviteRole, setInviteRole] = useState<'admin' | 'viewer'>('viewer')
 
+
+    const [editTodoValue, setEditTodoValue] = useState<string>('')
+    const [isEdit, setIsEdit] = useState<boolean>(false)
+    const [currentEditingTodoId, setCurrentEditingTodoId] = useState<string>('')
+
     const userId = useAppSelector(state => state.user.id)
     const list = useAppSelector(state => state.todoLists.lists.find((l) => l.id === id))
+
+    const userRole = list?.member.find((m) => m.userId === userId)?.role
 
     const { checkedTodos, uncheckedTodos } = useCheckedTodos(list?.todos)
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+
         setInputValue(e.target.value)
+
     }
 
     const handleAdd = () => {
-        if (userId !== null) {
+        if (userId !== null && inputValue.trim() !== '') {
             dispatch(addTodoToFirestore({ userId: userId, listId: String(id), title: inputValue }))
             setInputValue('')
         }
@@ -56,8 +68,19 @@ const ListPage = () => {
             })
     }
 
-    // 🎯 Отримуємо роль поточного користувача
-    const userRole = list?.member.find((m) => m.userId === userId)?.role
+    const handleChangeBtn = (): void => {
+        dispatch(changeTodoTitleFireStore({
+            userId: String(userId),
+            listId: String(id),
+            todoId: currentEditingTodoId,
+            newTitle: inputValue,
+        }));
+        setIsEdit(false)
+        setInputValue('')
+        setCurrentEditingTodoId('')
+    }
+
+
 
     return (
         <>
@@ -73,9 +96,13 @@ const ListPage = () => {
                     <div className='flex flex-col gap-3'>
                         <div className='flex items-center gap-3 mb-3 max-h-8'>
                             <TextField label='Todo title' value={inputValue} onChange={handleChange} />
-                            <Button variant="outlined" onClick={handleAdd}>Add Todo</Button>
+                            {
+                                isEdit ? <Button variant="outlined" onClick={handleChangeBtn} >Change Todo</Button>
+                                    : <Button variant="outlined" onClick={handleAdd}>Add Todo</Button>
+                            }
+
                         </div>
-                        <TaskList />
+                        <TaskList editTodoValue={inputValue} setEditTodoValue={setInputValue} isEdit={isEdit} setIsEdit={setIsEdit} currentEditingTodoId={currentEditingTodoId} setCurrentEditingTodoId={setCurrentEditingTodoId} />
                     </div>
 
                     <div className='flex flex-col justify-center gap-3 max-h-40'>
@@ -83,7 +110,7 @@ const ListPage = () => {
                         <Chart checkedTodos={checkedTodos} uncheckedTodos={uncheckedTodos} />
                     </div>
                 </div>
-
+                {list?.member && <MemberList members={list.member} />}
                 {/* 🛡️ Лише для ADMIN користувача */}
                 {userRole === 'admin' && (
                     <div className='flex flex-col gap-3 mt-6 w-full max-w-md'>

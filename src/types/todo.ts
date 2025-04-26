@@ -22,3 +22,9 @@ export interface AllTodoLists {
 
 }
 
+export interface Member {
+    userId: string,
+    email: string,
+    role: 'admin' | 'viewer'
+}
+

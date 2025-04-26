@@ -27,7 +27,7 @@ export const userSlice = createSlice({
             state.token = userData.token;
             state.roles = userData.roles;
 
-            // Зберігаємо в localStorage
+
             localStorage.setItem('user', JSON.stringify(userData));
         },
         removeUser(state) {
@@ -36,7 +36,7 @@ export const userSlice = createSlice({
             state.roles = {};
             state.token = null;
 
-            // Видаляємо з localStorage
+
             localStorage.removeItem('user');
         },
         setUserRole(state, action: PayloadAction<{ listId: string; role: 'admin' | 'viewer' }>) {

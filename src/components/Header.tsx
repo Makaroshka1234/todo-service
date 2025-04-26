@@ -11,7 +11,7 @@ const Header = () => {
     const dispatch = useAppDispatch()
 
     return (
-        <header className='flex items-center bg-blue-600 mb-5'>
+        <header className='flex items-center bg-customOrange mb-5'>
             <div className="flex justify-around items-center w-full header__inner">
                 <p className="logo-text">Todo service</p>
                 <nav className="flex gap-2 py-3 nav--list">
