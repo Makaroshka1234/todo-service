@@ -11,6 +11,7 @@ import TaskList from '../components/List/TaskList'
 import Header from '../components/Header'
 import Chart from '../components/Chart'
 import MemberList from '../components/List/MemberList'
+import InviteUser from '../components/InviteUser'
 
 const ListPage = () => {
     const dispatch = useAppDispatch()
@@ -85,8 +86,7 @@ const ListPage = () => {
     return (
         <>
             <Header />
-
-            <div className='flex flex-col gap-6 px-8 py-11 container'>
+            <div className='flex flex-col gap-6 px-8 container'>
                 <div className='flex items-center gap-2 mb-5'>
                     <h3>Назва списку</h3>
                     <p>{list?.title}</p>
@@ -95,13 +95,47 @@ const ListPage = () => {
                 <div className='flex justify-around px-3'>
                     <div className='flex flex-col gap-3'>
                         <div className='flex items-center gap-3 mb-3 max-h-8'>
-                            <TextField label='Todo title' value={inputValue} onChange={handleChange} />
+                            <TextField
+                                variant='outlined'
+                                sx={{
+                                    background: '#414141',
+                                    color: '#fff',
+                                    borderColor: '#303030',
+                                    borderRadius: 2,
+                                    '& .MuiInputBase-input': {
+                                        color: '#fff',
+                                    },
+                                    '&:hover fieldset': {
+                                        borderColor: '#414141',
+                                    },
+
+                                    '& .MuiInputLabel-root': {
+                                        color: '#fff',
+                                    },
+                                }
+                                }
+                                label='Todo title' value={inputValue} onChange={handleChange} />
                             {
-                                isEdit ? <Button variant="outlined" onClick={handleChangeBtn} >Change Todo</Button>
-                                    : <Button variant="outlined" onClick={handleAdd}>Add Todo</Button>
+                                isEdit ? <Button
+                                    sx={{
+                                        border: '#303030'
+                                    }}
+                                    variant="outlined" onClick={handleChangeBtn} >Change Todo</Button>
+                                    : <Button
+                                        sx={{
+                                            color: '#fff',
+                                            borderColor: '#303030',
+
+
+                                            '&:hover': {
+                                                background: '#414141'
+                                            }
+                                        }}
+                                        variant="outlined" onClick={handleAdd}>Add Todo</Button>
                             }
 
                         </div>
+                        <p>Задачі для виконання</p>
                         <TaskList editTodoValue={inputValue} setEditTodoValue={setInputValue} isEdit={isEdit} setIsEdit={setIsEdit} currentEditingTodoId={currentEditingTodoId} setCurrentEditingTodoId={setCurrentEditingTodoId} />
                     </div>
 
@@ -110,28 +144,15 @@ const ListPage = () => {
                         <Chart checkedTodos={checkedTodos} uncheckedTodos={uncheckedTodos} />
                     </div>
                 </div>
-                {list?.member && <MemberList members={list.member} />}
-                {/* 🛡️ Лише для ADMIN користувача */}
-                {userRole === 'admin' && (
-                    <div className='flex flex-col gap-3 mt-6 w-full max-w-md'>
-                        <h4>Запросити користувача</h4>
-                        <TextField
-                            label='Email користувача'
-                            value={inviteEmail}
-                            onChange={(e) => setInviteEmail(e.target.value)}
-                        />
-                        <TextField
-                            select
-                            label='Роль'
-                            value={inviteRole}
-                            onChange={(e) => setInviteRole(e.target.value as 'admin' | 'viewer')}
-                        >
-                            <MenuItem value='admin'>Admin</MenuItem>
-                            <MenuItem value='viewer'>Viewer</MenuItem>
-                        </TextField>
-                        <Button variant='contained' onClick={handleInvite}>Запросити</Button>
-                    </div>
-                )}
+                <div className="bottom flex justify-between">
+                    {list?.member && <MemberList members={list.member} />}
+                    {/* 🛡️ Лише для ADMIN користувача */}
+                    {userRole === 'admin' &&
+                        <InviteUser inviteEmail={inviteEmail} inviteRole={inviteRole} setInviteEmail={setInviteEmail} setInviteRole={setInviteRole} handleInvite={handleInvite} />
+                    }
+                </div>
+
+
             </div>
         </>
     )

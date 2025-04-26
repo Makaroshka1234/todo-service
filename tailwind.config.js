@@ -10,7 +10,9 @@ module.exports = {
                 brand: {
 
                 },
-                customOrange: '#fca311'
+                customOrange: '#fca311',
+                customGray: '#414141',
+                customBorder: '#303030'
             }
         },
     },

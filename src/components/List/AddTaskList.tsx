@@ -27,7 +27,7 @@ const AddTaskList = () => {
 
     return (
         <>
-            <div className="flex flex-col gap-6 bg-slate-50 container" >
+            <div className="flex flex-col gap-6 container" >
 
                 <div className='flex items-center gap-2 p-3'>
                     <TextField label='TodoList title' value={inputValue} onChange={handleChange} />

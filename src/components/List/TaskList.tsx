@@ -41,7 +41,7 @@ const TaskList = ({ editTodoValue, setEditTodoValue, isEdit, setIsEdit, currentE
 
 
     return (
-        <ul className='flex flex-col gap-4 mb-3 max-w-lg'>
+        <ul className='flex flex-col gap-4 bg-customGray mb-3 rounded-md max-w-lg'>
             <AnimatePresence>
                 {list?.todos.map((item: ITodo, index: number) => (
                     <motion.li
@@ -51,13 +51,14 @@ const TaskList = ({ editTodoValue, setEditTodoValue, isEdit, setIsEdit, currentE
                         exit='exit'
                         custom={index}
                         key={item.id}
-                        className='flex justify-center items-center gap-4 bg-cyan-400 px-12 py-2'
+                        className='flex justify-center items-center gap-4 px-12 py-2'
                     >
                         <span>{item.title}</span>
 
                         {/* Видалення лише для admin */}
                         {role === 'admin' && (
                             <IconButton
+
                                 onClick={() => {
                                     if (id && userId) {
                                         dispatch(deleteTodoFromFirestore({
@@ -68,14 +69,22 @@ const TaskList = ({ editTodoValue, setEditTodoValue, isEdit, setIsEdit, currentE
                                     }
                                 }}
                             >
-                                <DeleteIcon />
+                                <DeleteIcon sx={{
+                                    fill: '#fff'
+                                }} />
                             </IconButton>
                         )}
                         <IconButton onClick={() => handleChange(item.title, item.id)}>
-                            <EditIcon />
+                            <EditIcon sx={{
+                                fill: '#fff'
+                            }} />
                         </IconButton>
                         {/* Зміна статусу доступна всім */}
                         <Checkbox
+                            sx={{
+                                color: '#fff',
+
+                            }}
                             color="success"
                             onChange={() => {
                                 if (id && userId) {

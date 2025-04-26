@@ -30,7 +30,7 @@ const TodoLists = () => {
                         initial='hidden'
                         animate='visible'
                         variants={TodoListVariants}
-                        className='flex flex-col bg-slate-500 p-4 rounded-lg min-w-[250px]'
+                        className='flex flex-col bg-customGray p-4 rounded-lg min-w-[250px]'
                     >
                         <div className="inner">
                             <p>Назва списку: <span>{item.title}</span></p>
@@ -45,12 +45,19 @@ const TodoLists = () => {
                                         }
                                         aria-label="delete"
                                     >
-                                        <DeleteIcon />
+                                        <DeleteIcon
+                                            sx={{
+                                                fill: '#fff'
+                                            }}
+                                        />
                                     </IconButton>
                                 )}
                                 <Link to={`/lists/${item.id}`}>
                                     <IconButton>
-                                        <ArrowForwardIcon />
+                                        <ArrowForwardIcon
+                                            sx={{
+                                                fill: '#fff'
+                                            }} />
                                     </IconButton>
                                 </Link>
                             </div>
