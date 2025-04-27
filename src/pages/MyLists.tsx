@@ -5,7 +5,7 @@ import Header from '../components/Header'
 
 const MyLists = () => {
     return (
-        <div>
+        <div className='flex flex-col min-h-screen'>
             <Header />
             <AddTaskList />
         </div>
