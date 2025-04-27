@@ -47,8 +47,38 @@ const AuthForm = ({ title, handleClick }: AuthFormProps) => {
             <div className='flex flex-col justify-center items-center gap-2.5 mb-2'>
                 <TextField
                     sx={{
-                        maxWidth: 200
-                    }}
+                        maxWidth: 200,
+                        background: '#414141',
+                        color: '#fff',
+                        borderColor: '#303030',
+                        borderRadius: 2,
+                        '& .MuiInputBase-input': {
+                            color: '#fff',
+                            '&:-webkit-autofill': {
+                                WebkitBoxShadow: '0 0 0 1000px #414141 inset',
+                                WebkitTextFillColor: '#fff',
+                            },
+                        },
+                        '&:hover fieldset': {
+                            borderColor: '#414141',
+                        },
+
+                        '& .MuiInputLabel-root': {
+                            color: '#fff',
+                        },
+                        '& .MuiOutlinedInput-root': {
+                            '& fieldset': {
+                                borderColor: '#303030',
+                            },
+                            '&:hover fieldset': {
+                                borderColor: '#414141',
+                            },
+                            '&.Mui-focused fieldset': {
+                                borderColor: '#414141',
+                            },
+                        }
+                    }
+                    }
                     label="Email"
                     type="email"
                     variant="outlined"
@@ -64,8 +94,39 @@ const AuthForm = ({ title, handleClick }: AuthFormProps) => {
                 {emailError && <p className='text-red-600'>{emailError}</p>}
                 <TextField
                     sx={{
-                        maxWidth: 200
-                    }}
+                        maxWidth: 200,
+                        background: '#414141',
+                        color: '#fff',
+                        borderColor: '#303030',
+                        borderRadius: 2,
+                        '& .MuiInputBase-input': {
+                            color: '#fff',
+                            '&:-webkit-autofill': {
+                                WebkitBoxShadow: '0 0 0 1000px #414141 inset',
+                                WebkitTextFillColor: '#fff',
+                            },
+                        },
+                        '&:hover fieldset': {
+                            borderColor: '#414141',
+                        },
+
+                        '& .MuiInputLabel-root': {
+                            color: '#fff',
+                        },
+                        '& .MuiOutlinedInput-root': {
+                            '& fieldset': {
+                                borderColor: '#303030',
+                            },
+                            '&:hover fieldset': {
+                                borderColor: '#414141',
+                            },
+                            '&.Mui-focused fieldset': {
+                                borderColor: '#414141',
+                            },
+                        }
+
+                    }
+                    }
                     label="Password"
                     type="text"
                     variant="outlined"
@@ -81,6 +142,10 @@ const AuthForm = ({ title, handleClick }: AuthFormProps) => {
             </div>
 
             <Button
+                sx={{
+                    background: '#414141',
+                    borderColor: '#414141'
+                }}
                 type='submit'
                 variant="contained" size="medium">
                 {title}

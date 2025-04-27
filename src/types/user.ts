@@ -1,5 +1,5 @@
 
-
+export type Role = 'admin' | 'viewer'
 
 export interface User {
     id: string | null,
@@ -21,5 +21,5 @@ export interface InviteUserParams {
     listId: string;
     userId: string; // той хто запрошує
     email: string;
-    role: 'admin' | 'viewer';
+    role: Role;
 }

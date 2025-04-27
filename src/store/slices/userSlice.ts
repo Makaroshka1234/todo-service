@@ -4,11 +4,6 @@ import { User } from '../../types/user'
 
 
 
-
-
-
-
-
 const initialState: User = {
     id: '',
     email: null,

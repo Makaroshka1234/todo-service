@@ -1,8 +1,9 @@
 import { Button, MenuItem, TextField } from '@mui/material'
 import React from 'react'
+import { Role } from '../types/user'
 
 
-type Role = 'admin' | 'viewer'
+
 
 interface InviteUserProps {
     inviteEmail: string,
@@ -14,7 +15,7 @@ interface InviteUserProps {
 
 const InviteUser = ({ inviteEmail, inviteRole, setInviteEmail, setInviteRole, handleInvite }: InviteUserProps) => {
     return (
-        <div className='flex flex-col gap-3 mt-6 w-full max-w-md'>
+        <div className='flex flex-col gap-3 mt-6 pb-2 w-full max-w-md'>
             <h4>Запросити користувача</h4>
             <TextField
                 sx={{
@@ -32,6 +33,18 @@ const InviteUser = ({ inviteEmail, inviteRole, setInviteEmail, setInviteRole, ha
                     '& .MuiInputLabel-root': {
                         color: '#fff',
                     },
+                    '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                            borderColor: '#303030', // стандартний бордер
+                        },
+                        '&:hover fieldset': {
+                            borderColor: '#414141', // бордер при наведенні
+                        },
+                        '&.Mui-focused fieldset': {
+                            borderColor: '#414141', // бордер коли фокус
+                        },
+                    }
+
                 }
                 }
                 label='Email користувача'
@@ -54,6 +67,17 @@ const InviteUser = ({ inviteEmail, inviteRole, setInviteEmail, setInviteRole, ha
                     '& .MuiInputLabel-root': {
                         color: '#fff',
                     },
+                    '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                            borderColor: '#303030', // стандартний бордер
+                        },
+                        '&:hover fieldset': {
+                            borderColor: '#414141', // бордер при наведенні
+                        },
+                        '&.Mui-focused fieldset': {
+                            borderColor: '#414141', // бордер коли фокус
+                        },
+                    }
 
                 }
                 }

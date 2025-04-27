@@ -22,7 +22,7 @@ const RegisterForm = () => {
                     email: user.email,
                     id: user.uid,
                     token: token,
-                    roles: {}, // ← обов’язково для відповідності типу User
+                    roles: {},
                 }));
                 await setDoc(doc(db, 'users', user.uid), {
                     email: user.email,

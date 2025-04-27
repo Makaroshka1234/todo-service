@@ -253,8 +253,8 @@ export const inviteUserToList = createAsyncThunk<void, InviteUserParams>(
 
 
 export const changeTodoTitleFireStore = createAsyncThunk<
-    { id: string; title: string },                  // Що повертаємо
-    { userId: string; listId: string; todoId: string; newTitle: string },  // Що передаємо
+    { id: string; title: string },
+    { userId: string; listId: string; todoId: string; newTitle: string },
     { rejectValue: string }
 >(
     'todoLists/changeTodoTitleFireStore',
@@ -302,11 +302,11 @@ export const todoListsSlice = createSlice({
 
                 const todo = list.todos.find((t) => String(t.id) === String(todoId));
                 if (todo) {
-                    todo.title = newTitle; // миттєво оновлюємо в сторанжі
+                    todo.title = newTitle;
                 }
             })
             .addCase(inviteUserToList.fulfilled, (state, action) => {
-                // Нічого не треба, бо onSuccess ми просто показуємо snackbar
+
             })
             .addCase(addTodoListToFirestore.fulfilled, (state, action) => {
                 state.lists.push({

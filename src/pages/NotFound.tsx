@@ -4,10 +4,12 @@ import Header from '../components/Header'
 
 const NotFound = () => {
     return (
-        <div className='flex justify-center items-center bg-blue-400 w-full min-h-full'>
+        <>
             <Header />
-            <NotFoundMessage />
-        </div>
+            <div className='flex justify-center items-center w-full h-full'>
+                <NotFoundMessage />
+            </div>
+        </>
     )
 }
 

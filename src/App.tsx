@@ -11,13 +11,13 @@ import NotFound from './pages/NotFound';
 import ListPage from './pages/ListPage';
 import MyLists from './pages/MyLists';
 import Login from './pages/LoginPage';
-import Register from './pages/RegisterPage';
+
 import RegisterPage from './pages/RegisterPage';
 
 
 
 
-import { useAuth } from './hooks/useAuth';
+
 import { useAppDispatch, useAppSelector } from './hooks/reduxHooks';
 
 
@@ -29,10 +29,13 @@ import './App.css';
 function App() {
   const userId = useAppSelector((state) => state.user.id);
   const dispatch = useAppDispatch();
-  
+  const navigate = useNavigate()
+
   useEffect(() => {
     if (userId) {
       dispatch(fetchTodoListsFromFirestore(userId));
+    } else {
+      navigate('/')
     }
   }, [userId, dispatch]);
 

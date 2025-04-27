@@ -41,7 +41,7 @@ const TaskList = ({ editTodoValue, setEditTodoValue, isEdit, setIsEdit, currentE
 
 
     return (
-        <ul className='flex flex-col gap-4 bg-customGray mb-3 rounded-md max-w-lg'>
+        <ul className='flex flex-col gap-4 bg-customGray mb-3 rounded-md min-w-[600px] max-w-[700px] min-h-[300px] max-h-[301px] overflow-x-hidden overflow-y-auto'>
             <AnimatePresence>
                 {list?.todos.map((item: ITodo, index: number) => (
                     <motion.li
@@ -51,7 +51,7 @@ const TaskList = ({ editTodoValue, setEditTodoValue, isEdit, setIsEdit, currentE
                         exit='exit'
                         custom={index}
                         key={item.id}
-                        className='flex justify-center items-center gap-4 px-12 py-2'
+                        className='flex justify-center items-center gap-4 px-12 py-2 border-customBorder border-b'
                     >
                         <span>{item.title}</span>
 

@@ -12,7 +12,7 @@ module.exports = {
                 },
                 customOrange: '#fca311',
                 customGray: '#414141',
-                customBorder: '#303030'
+                customBorder: '#ffffff26'
             }
         },
     },

@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useState } from 'react'
 import { useParams } from 'react-router'
-import { Button, MenuItem, TextField } from '@mui/material'
-import { useSnackbar } from 'notistack'
+
 
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
 import useCheckedTodos from '../hooks/useCheckedTodos'
@@ -13,11 +12,11 @@ import Chart from '../components/Chart'
 import MemberList from '../components/List/MemberList'
 import InviteUser from '../components/InviteUser'
 
+import { Button, TextField } from '@mui/material'
+import { useSnackbar } from 'notistack'
 const ListPage = () => {
     const dispatch = useAppDispatch()
     const { enqueueSnackbar } = useSnackbar()
-
-
 
     const { id } = useParams()
     const [inputValue, setInputValue] = useState<string>('')
@@ -25,7 +24,6 @@ const ListPage = () => {
     const [inviteRole, setInviteRole] = useState<'admin' | 'viewer'>('viewer')
 
 
-    const [editTodoValue, setEditTodoValue] = useState<string>('')
     const [isEdit, setIsEdit] = useState<boolean>(false)
     const [currentEditingTodoId, setCurrentEditingTodoId] = useState<string>('')
 
@@ -37,9 +35,7 @@ const ListPage = () => {
     const { checkedTodos, uncheckedTodos } = useCheckedTodos(list?.todos)
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-
         setInputValue(e.target.value)
-
     }
 
     const handleAdd = () => {
@@ -52,6 +48,12 @@ const ListPage = () => {
     const handleInvite = () => {
         if (!inviteEmail || !id || !userId) return
 
+        const alreadyInvited = list?.member.some(member => member.email === inviteEmail);
+        console.log(alreadyInvited, 'test')
+        if (alreadyInvited) {
+            enqueueSnackbar(`Користувач ${inviteEmail} запрошений як ${userRole}`, { variant: 'error' })
+            return;
+        }
         dispatch(inviteUserToList({
             listId: id,
             userId: userId,
@@ -80,7 +82,6 @@ const ListPage = () => {
         setInputValue('')
         setCurrentEditingTodoId('')
     }
-
 
 
     return (
@@ -112,6 +113,18 @@ const ListPage = () => {
                                     '& .MuiInputLabel-root': {
                                         color: '#fff',
                                     },
+                                    '& .MuiOutlinedInput-root': {
+                                        '& fieldset': {
+                                            borderColor: '#303030', // стандартний бордер
+                                        },
+                                        '&:hover fieldset': {
+                                            borderColor: '#414141', // бордер при наведенні
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: '#414141', // бордер коли фокус
+                                        },
+                                    }
+
                                 }
                                 }
                                 label='Todo title' value={inputValue} onChange={handleChange} />
@@ -146,7 +159,6 @@ const ListPage = () => {
                 </div>
                 <div className="bottom flex justify-between">
                     {list?.member && <MemberList members={list.member} />}
-                    {/* 🛡️ Лише для ADMIN користувача */}
                     {userRole === 'admin' &&
                         <InviteUser inviteEmail={inviteEmail} inviteRole={inviteRole} setInviteEmail={setInviteEmail} setInviteRole={setInviteRole} handleInvite={handleInvite} />
                     }

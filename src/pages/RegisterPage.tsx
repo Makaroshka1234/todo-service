@@ -1,8 +1,7 @@
 import React from 'react'
-import AuthForm from '../components/auth/AuthForm'
-import Header from '../components/Header'
 
-import RegisterForm from '../components/auth/Register'
+import Header from '../components/Header'
+import RegisterForm from '../components/auth/RegisterForm'
 
 
 const RegisterPage = () => {

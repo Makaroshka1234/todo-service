@@ -30,7 +30,44 @@ const AddTaskList = () => {
             <div className="flex flex-col gap-6 container" >
 
                 <div className='flex items-center gap-2 p-3'>
-                    <TextField label='TodoList title' value={inputValue} onChange={handleChange} />
+                    <TextField
+                        sx={{
+                            maxWidth: 200,
+                            background: '#414141',
+                            color: '#fff',
+                            borderColor: '#303030',
+                            borderRadius: 2,
+                            '& .MuiInputBase-input': {
+                                color: '#fff',
+                                '&:-webkit-autofill': {
+                                    WebkitBoxShadow: '0 0 0 1000px #414141 inset',
+                                    WebkitTextFillColor: '#fff',
+                                },
+
+                            },
+                            '&:hover fieldset': {
+                                borderColor: '#414141',
+                            },
+
+                            '& .MuiInputLabel-root': {
+                                color: '#fff',
+
+                            },
+                            '& .MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: '#303030',
+                                },
+                                '&:hover fieldset': {
+                                    borderColor: '#414141',
+                                },
+                                '&.Mui-focused fieldset': {
+                                    borderColor: '#414141',
+                                },
+
+                            }
+                        }
+                        }
+                        label='TodoList title' value={inputValue} onChange={handleChange} />
                     <Button variant="outlined" onClick={() => handleAdd()}>Add TodoList</Button>
                 </div>
                 <TodoLists />
