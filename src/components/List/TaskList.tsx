@@ -42,7 +42,7 @@ const TaskList = ({ editTodoValue, setEditTodoValue, isEdit, setIsEdit, currentE
 
     return (
         <ul className='flex flex-col gap-4 bg-customGray mb-3 rounded-md min-w-[600px] max-w-[700px] min-h-[300px] max-h-[301px] overflow-x-hidden overflow-y-auto'>
-            <AnimatePresence>
+            {list?.todos.length ? <AnimatePresence>
                 {list?.todos.map((item: ITodo, index: number) => (
                     <motion.li
                         variants={listVariants}
@@ -99,7 +99,7 @@ const TaskList = ({ editTodoValue, setEditTodoValue, isEdit, setIsEdit, currentE
                         />
                     </motion.li>
                 ))}
-            </AnimatePresence>
+            </AnimatePresence> : 'no tasks'}
         </ul>
     )
 }
