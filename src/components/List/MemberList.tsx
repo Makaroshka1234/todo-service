@@ -10,11 +10,11 @@ interface MembersListProps {
 
 const MemberList = ({ members }: MembersListProps) => {
     return (
-        <div className='flex flex-col gap-2'>
+        <div className='flex flex-col gap-2 w-full'>
             <div>
                 <p className='font-light'> Користувачі списку</p>
             </div>
-            <table className="bg-[#212121] border border-gray-300 w-full max-w-xs border-collapse table-auto">
+            <table className="bg-[#212121] border border-gray-300 w-full border-collapse table-auto">
                 <thead>
                     <tr>
                         <th className="px-2 py-1 border border-gray-300 text-left">Email</th>

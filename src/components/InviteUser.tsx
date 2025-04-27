@@ -15,106 +15,117 @@ interface InviteUserProps {
 
 const InviteUser = ({ inviteEmail, inviteRole, setInviteEmail, setInviteRole, handleInvite }: InviteUserProps) => {
     return (
-        <div className='flex flex-col gap-3 mt-6 pb-2 w-full max-w-md'>
+        <div className='flex gap-3 pb-2 w-full max-w-2xl'>
             <h4>Запросити користувача</h4>
-            <TextField
-                sx={{
-                    background: '#414141',
-                    color: '#fff',
-                    borderColor: '#303030',
-                    borderRadius: 2,
-                    '& .MuiInputBase-input': {
+            <div className='flex gap-3 pb-2 w-full max-w-2xl'>
+                <TextField
+                    sx={{
+                        background: '#414141',
                         color: '#fff',
-                    },
-                    '&:hover fieldset': {
-                        borderColor: '#414141',
-                    },
-
-                    '& .MuiInputLabel-root': {
-                        color: '#fff',
-                    },
-                    '& .MuiOutlinedInput-root': {
-                        '& fieldset': {
-                            borderColor: '#303030', // стандартний бордер
+                        borderColor: '#303030',
+                        borderRadius: 2,
+                        '& .MuiInputBase-input': {
+                            color: '#fff',
                         },
                         '&:hover fieldset': {
-                            borderColor: '#414141', // бордер при наведенні
+                            borderColor: '#414141',
                         },
-                        '&.Mui-focused fieldset': {
-                            borderColor: '#414141', // бордер коли фокус
+
+                        '& .MuiInputLabel-root': {
+                            color: '#fff',
                         },
+                        '& .MuiOutlinedInput-root': {
+                            '& fieldset': {
+                                borderColor: '#303030', // стандартний бордер
+                            },
+                            '&:hover fieldset': {
+                                borderColor: '#414141', // бордер при наведенні
+                            },
+                            '&.Mui-focused fieldset': {
+                                borderColor: '#414141', // бордер коли фокус
+                            },
+                        }
+
                     }
-
-                }
-                }
-                label='Email користувача'
-                value={inviteEmail}
-                onChange={(e) => setInviteEmail(e.target.value)}
-            />
-            <TextField
-                sx={{
-                    background: '#414141',
-                    color: '#fff',
-                    borderColor: '#303030',
-                    borderRadius: 2,
-                    '& .MuiInputBase-input': {
+                    }
+                    label='Email користувача'
+                    value={inviteEmail}
+                    onChange={(e) => setInviteEmail(e.target.value)}
+                />
+                <TextField
+                    sx={{
+                        background: '#414141',
                         color: '#fff',
-                    },
-                    '&:hover fieldset': {
-                        borderColor: '#414141',
-                    },
-
-                    '& .MuiInputLabel-root': {
-                        color: '#fff',
-                    },
-                    '& .MuiOutlinedInput-root': {
-                        '& fieldset': {
-                            borderColor: '#303030', // стандартний бордер
+                        borderColor: '#303030',
+                        borderRadius: 2,
+                        '& .MuiInputBase-input': {
+                            color: '#fff',
                         },
                         '&:hover fieldset': {
-                            borderColor: '#414141', // бордер при наведенні
+                            borderColor: '#414141',
                         },
-                        '&.Mui-focused fieldset': {
-                            borderColor: '#414141', // бордер коли фокус
+
+                        '& .MuiInputLabel-root': {
+                            color: '#fff',
                         },
+                        '& .MuiOutlinedInput-root': {
+                            '& fieldset': {
+                                borderColor: '#303030', // стандартний бордер
+                            },
+                            '&:hover fieldset': {
+                                borderColor: '#414141', // бордер при наведенні
+                            },
+                            '&.Mui-focused fieldset': {
+                                borderColor: '#414141', // бордер коли фокус
+                            },
+                        }
+
                     }
+                    }
+                    SelectProps={{
+                        MenuProps: {
+                            PaperProps: {
+                                sx: {
+                                    backgroundColor: '#414141', // колір бекграунда випадаючого меню
+                                    color: '#fff',               // колір тексту у меню
 
-                }
-                }
-                SelectProps={{
-                    MenuProps: {
-                        PaperProps: {
-                            sx: {
-                                backgroundColor: '#414141', // колір бекграунда випадаючого меню
-                                color: '#fff',               // колір тексту у меню
-
+                                },
                             },
                         },
-                    },
-                }}
-                select
-                label='Роль'
-                value={inviteRole}
-                onChange={(e) => setInviteRole(e.target.value as Role)}
-            >
-                <MenuItem
-                    sx={{
-                        '&.Mui-selected': {
-                            backgroundColor: '#616161',
-                            color: '#fff',
-                        },
                     }}
-                    value='admin'>Admin</MenuItem>
-                <MenuItem
+                    select
+                    label='Роль'
+                    value={inviteRole}
+                    onChange={(e) => setInviteRole(e.target.value as Role)}
+                >
+                    <MenuItem
+                        sx={{
+                            '&.Mui-selected': {
+                                backgroundColor: '#616161',
+                                color: '#fff',
+                            },
+                        }}
+                        value='admin'>Admin</MenuItem>
+                    <MenuItem
+                        sx={{
+                            '&.Mui-selected': {
+                                backgroundColor: '#616161',
+                                color: '#fff',
+                            },
+                        }}
+                        value='viewer'>Viewer</MenuItem>
+                </TextField>
+                <Button
                     sx={{
-                        '&.Mui-selected': {
-                            backgroundColor: '#616161',
-                            color: '#fff',
-                        },
+                        background: '#212121',
+                        borderColor: '#ffffff26',
+                        '&:hover': {
+                            background: '#414141'
+                        }
                     }}
-                    value='viewer'>Viewer</MenuItem>
-            </TextField>
-            <Button variant='contained' onClick={handleInvite}>Запросити</Button>
+                    variant='contained' onClick={handleInvite}>Запросити</Button>
+            </div>
+
         </div>
     )
 }

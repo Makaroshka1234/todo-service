@@ -74,6 +74,7 @@ const ListPage = () => {
     }
 
     const handleChangeBtn = (): void => {
+
         dispatch(changeTodoTitleFireStore({
             userId: String(userId),
             listId: String(id),
@@ -160,7 +161,8 @@ const ListPage = () => {
                         <Chart checkedTodos={checkedTodos} uncheckedTodos={uncheckedTodos} />
                     </div>
                 </div>
-                <div className="bottom flex justify-between">
+                <div className="bottom flex flex-col gap-4 pb-5 w-full">
+
                     {list?.member && <MemberList members={list.member} />}
                     {userRole === 'admin' &&
                         <InviteUser inviteEmail={inviteEmail} inviteRole={inviteRole} setInviteEmail={setInviteEmail} setInviteRole={setInviteRole} handleInvite={handleInvite} />

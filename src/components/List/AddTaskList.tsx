@@ -19,7 +19,7 @@ const AddTaskList = () => {
     }
 
     function handleAdd(): void {
-        if (id !== null) {
+        if (inputValue.trim() !== '' && id !== null) {
             dispatch(addTodoListToFirestore({ titleList: inputValue, userId: id, userEmail: String(email) }));
             setInputValue('')
         }
@@ -68,7 +68,16 @@ const AddTaskList = () => {
                         }
                         }
                         label='TodoList title' value={inputValue} onChange={handleChange} />
-                    <Button variant="outlined" onClick={() => handleAdd()}>Add TodoList</Button>
+                    <Button
+                        sx={{
+                            background: '#212121',
+                            borderColor: '#ffffff26',
+                            color: '#fff',
+                            '&:hover': {
+                                background: '#414141'
+                            }
+                        }}
+                        variant="outlined" onClick={() => handleAdd()}>Add TodoList</Button>
                 </div>
                 <TodoLists />
             </div>
