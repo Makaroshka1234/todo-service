@@ -20,6 +20,7 @@ const initialState: AllTodoLists = {
     userId: '',
     title: '',
     lists: [],
+    fetchPending: false
 };
 
 export const addTodoListToFirestore = createAsyncThunk(
@@ -318,6 +319,7 @@ export const todoListsSlice = createSlice({
                     member: action.payload.member.map((m) => ({
                         ...m,
                         role: m.role as 'admin' | 'viewer',
+
                     })),
                 });
             })
@@ -326,6 +328,10 @@ export const todoListsSlice = createSlice({
             })
             .addCase(fetchTodoListsFromFirestore.fulfilled, (state, action) => {
                 state.lists = action.payload;
+                state.fetchPending = false
+            })
+            .addCase(fetchTodoListsFromFirestore.pending, (state, action) => {
+                state.fetchPending = true
             })
             .addCase(addTodoToFirestore.fulfilled, (state, action) => {
                 const list = state.lists.find((list) => list.id === action.payload.listId);

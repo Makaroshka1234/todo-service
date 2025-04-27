@@ -13,12 +13,14 @@ export interface TodoListState {
     inputError: boolean,
     userId: string | null,
     member: UserListRole[],
+
 }
 
 export interface AllTodoLists {
     userId: string,
     title: string,
     lists: TodoListState[],
+    fetchPending: boolean
 
 }
 

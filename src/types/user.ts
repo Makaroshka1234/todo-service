@@ -6,14 +6,14 @@ export interface User {
     email: null | string,
     token: null | string,
     roles: {
-        [listId: string]: 'admin' | 'viewer'
+        [listId: string]: Role
     }
 }
 
 export interface UserListRole {
     email: string,
     id: string,
-    role: 'admin' | 'viewer',
+    role: Role,
     userId: string
 }
 

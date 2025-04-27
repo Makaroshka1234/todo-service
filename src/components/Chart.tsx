@@ -15,6 +15,8 @@ const Chart = ({ checkedTodos, uncheckedTodos }: ChartProps) => {
             sx={{
                 width: 400,
                 height: 400,
+
+
             }}
             series={[
                 {
@@ -27,8 +29,11 @@ const Chart = ({ checkedTodos, uncheckedTodos }: ChartProps) => {
                     outerRadius: 70,
                     paddingAngle: 2,
                     cornerRadius: 5,
+
+
                 },
             ]}
+           
 
         />
     )

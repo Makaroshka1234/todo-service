@@ -12,8 +12,9 @@ import Chart from '../components/Chart'
 import MemberList from '../components/List/MemberList'
 import InviteUser from '../components/InviteUser'
 
-import { Button, TextField } from '@mui/material'
+import { Button, CircularProgress, TextField } from '@mui/material'
 import { useSnackbar } from 'notistack'
+import Loader from '../components/Loader'
 const ListPage = () => {
     const dispatch = useAppDispatch()
     const { enqueueSnackbar } = useSnackbar()
@@ -27,6 +28,7 @@ const ListPage = () => {
     const [isEdit, setIsEdit] = useState<boolean>(false)
     const [currentEditingTodoId, setCurrentEditingTodoId] = useState<string>('')
 
+    const fetching = useAppSelector(state => state.todoLists.fetchPending)
     const userId = useAppSelector(state => state.user.id)
     const list = useAppSelector(state => state.todoLists.lists.find((l) => l.id === id))
 
@@ -87,7 +89,8 @@ const ListPage = () => {
     return (
         <>
             <Header />
-            <div className='flex flex-col gap-6 px-8 container'>
+
+            {fetching ? <Loader /> : <div className='flex flex-col gap-6 px-8 container'>
                 <div className='flex items-center gap-2 mb-5'>
                     <h3>Назва списку</h3>
                     <p>{list?.title}</p>
@@ -165,7 +168,7 @@ const ListPage = () => {
                 </div>
 
 
-            </div>
+            </div>}
         </>
     )
 }
