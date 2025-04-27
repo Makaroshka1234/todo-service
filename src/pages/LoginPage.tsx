@@ -10,8 +10,9 @@ const LoginPage = () => {
 
     return (
         <>
-            <Header />
-            <div className='flex justify-center items-center'>
+            <div className='flex flex-col min-h-screen'>
+                <Header />
+
                 <LoginForm />
             </div>
         </>
