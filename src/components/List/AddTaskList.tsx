@@ -4,10 +4,13 @@ import React, { ChangeEvent, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { addTodoListToFirestore } from '../../store/slices/todoListsSlice';
 import TodoLists from './TodoLists';
+import { setUserRole } from '../../store/slices/userSlice';
 
 
 
 const AddTaskList = () => {
+
+
 
     const dispatch = useAppDispatch()
     const { id, email } = useAppSelector(state => state.user)
@@ -18,9 +21,15 @@ const AddTaskList = () => {
         setInputValue(e.target.value)
     }
 
-    function handleAdd(): void {
+    async function handleAdd(): Promise<void> {
         if (inputValue.trim() !== '' && id !== null) {
-            dispatch(addTodoListToFirestore({ titleList: inputValue, userId: id, userEmail: String(email) }));
+            const resultAction = await dispatch(addTodoListToFirestore({ titleList: inputValue, userId: id, userEmail: String(email) }));
+
+
+            const payload = resultAction.payload as { id: string }
+            if (payload?.id) {
+                dispatch(setUserRole({ listId: payload.id, role: 'admin' }));
+            }
             setInputValue('')
         }
     }

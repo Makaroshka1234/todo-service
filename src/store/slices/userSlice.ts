@@ -37,7 +37,8 @@ export const userSlice = createSlice({
         setUserRole(state, action: PayloadAction<{ listId: string; role: 'admin' | 'viewer' }>) {
             const { listId, role } = action.payload
             state.roles[listId] = role
-        }
+        },
+        
     },
 })
 

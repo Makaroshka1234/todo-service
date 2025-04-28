@@ -31,6 +31,7 @@ const TaskList = ({ editTodoValue, setEditTodoValue, isEdit, setIsEdit, currentE
     const role = useAppSelector(state => state.user.roles[id || ''])
     const list = useAppSelector(state => state.todoLists.lists.find((l) => String(l.id) === id))
     const fetching = useAppSelector(state => state.todoLists.fetchPending)
+    console.log(role, 'role')
 
     function handleChange(title: string, id: number) {
 
@@ -56,25 +57,24 @@ const TaskList = ({ editTodoValue, setEditTodoValue, isEdit, setIsEdit, currentE
                     >
                         <span>{item.title}</span>
 
-                        {/* Видалення лише для admin */}
-                        {role === 'admin' && (
-                            <IconButton
 
-                                onClick={() => {
-                                    if (id && userId) {
-                                        dispatch(deleteTodoFromFirestore({
-                                            userId: String(userId),
-                                            listId: String(list.id),
-                                            todoId: item.id
-                                        }))
-                                    }
-                                }}
-                            >
-                                <DeleteIcon sx={{
-                                    fill: '#fff'
-                                }} />
-                            </IconButton>
-                        )}
+                        {role === 'admin' && (<IconButton
+
+                            onClick={() => {
+                                if (id) {
+                                    dispatch(deleteTodoFromFirestore({
+                                        userId: String(userId),
+                                        listId: String(list.id),
+                                        todoId: item.id
+                                    }))
+                                }
+                            }}
+                        >
+                            <DeleteIcon sx={{
+                                fill: '#fff'
+                            }} />
+                        </IconButton>)
+                        }
                         <IconButton onClick={() => handleChange(item.title, item.id)}>
                             <EditIcon sx={{
                                 fill: '#fff'
