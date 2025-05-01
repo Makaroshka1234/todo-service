@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Link } from 'react-router'
 import { useAuth } from '../hooks/useAuth'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
@@ -46,7 +46,7 @@ const Header = () => {
     )
 }
 
-export default Header
+export default memo(Header)
 
 
 

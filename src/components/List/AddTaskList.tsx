@@ -17,7 +17,7 @@ const AddTaskList = () => {
 
     const [inputValue, setInputValue] = useState<string>('')
 
-    function handleChange(e: ChangeEvent<HTMLInputElement>): void {
+    function changeListTitle(e: ChangeEvent<HTMLInputElement>): void {
         setInputValue(e.target.value)
     }
 
@@ -76,7 +76,7 @@ const AddTaskList = () => {
                             }
                         }
                         }
-                        label='TodoList title' value={inputValue} onChange={handleChange} />
+                        label='TodoList title' value={inputValue} onChange={changeListTitle} />
                     <Button
                         sx={{
                             background: '#212121',

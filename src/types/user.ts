@@ -6,7 +6,7 @@ export interface User {
     email: null | string,
     token: null | string,
     roles: {
-        [listId: string]: 'admin' | 'viewer'
+        [listId: string]: Role
     }
 }
 

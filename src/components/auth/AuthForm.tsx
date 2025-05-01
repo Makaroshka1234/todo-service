@@ -2,7 +2,7 @@ import { Box, Button, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 
-interface AuthForm {
+interface IAuthForm {
     email: string,
     password: string
 }
@@ -15,7 +15,7 @@ interface AuthFormProps {
 
 const AuthForm = ({ title, handleClick }: AuthFormProps) => {
 
-    const { register, handleSubmit, formState } = useForm<AuthForm>(
+    const { register, handleSubmit, formState } = useForm<IAuthForm>(
         {
             mode: 'onChange',
         }
@@ -24,7 +24,7 @@ const AuthForm = ({ title, handleClick }: AuthFormProps) => {
     const emailError = formState.errors.email?.message
     const passError = formState.errors.password?.message
 
-    function onSubmit(data: AuthForm): void {
+    function onSubmitForm(data: IAuthForm): void {
 
         handleClick(data.email, data.password)
     }
@@ -34,7 +34,7 @@ const AuthForm = ({ title, handleClick }: AuthFormProps) => {
             <div className="flex justify-center items-center mx-auto max-w-4xl container">
                 <Box
                     component="form"
-                    onSubmit={handleSubmit(onSubmit)}
+                    onSubmit={handleSubmit(onSubmitForm)}
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',

@@ -31,7 +31,7 @@ const TaskList = ({ editTodoValue, setEditTodoValue, isEdit, setIsEdit, currentE
     const role = useAppSelector(state => state.user.roles[id || ''])
     const list = useAppSelector(state => state.todoLists.lists.find((l) => String(l.id) === id))
     const fetching = useAppSelector(state => state.todoLists.fetchPending)
-    console.log(role, 'role')
+
 
     function handleChange(title: string, id: number) {
 

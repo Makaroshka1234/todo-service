@@ -1,4 +1,4 @@
-import { UserListRole } from "./user";
+import { Role, UserListRole } from "./user";
 
 export interface ITodo {
     id: number,
@@ -27,6 +27,6 @@ export interface AllTodoLists {
 export interface Member {
     userId: string,
     email: string,
-    role: 'admin' | 'viewer'
+    role: Role
 }
 
