@@ -4,13 +4,12 @@ import { getFirestore } from "firebase/firestore";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDHfx5XFa1jOdoy6nzKodu8aTkEniW5_D8",
-    authDomain: "todo-test-b4383.firebaseapp.com",
-    projectId: "todo-test-b4383",
-    storageBucket: "todo-test-b4383.firebasestorage.app",
-    messagingSenderId: "789747928355",
-    appId: "1:789747928355:web:071d544e34ee3ec3b19096",
-    measurementId: "G-MJ105RF8F9"
+    apiKey: "AIzaSyD17ZTCztFv3rVdGglfxwoX0MlKGAHMlCE",
+    authDomain: "list-service-be73a.firebaseapp.com",
+    projectId: "list-service-be73a",
+    storageBucket: "list-service-be73a.firebasestorage.app",
+    messagingSenderId: "1069175626464",
+    appId: "1:1069175626464:web:976dfe9d494d27a16c0e85"
   };
 
 
