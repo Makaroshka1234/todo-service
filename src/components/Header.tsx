@@ -1,9 +1,9 @@
-import React, { memo } from "react";
-import { Link } from "react-router";
-import { useAuth } from "../hooks/useAuth";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
-import { Button } from "@mui/material";
-import { removeUser } from "../store/slices/userSlice";
+import React, { memo } from 'react';
+import { Link } from 'react-router';
+import { useAuth } from '../hooks/useAuth';
+import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
+import { Button } from '@mui/material';
+import { removeUser } from '../store/slices/userSlice';
 
 const Header = () => {
   const { isAuth } = useAuth();
@@ -15,13 +15,13 @@ const Header = () => {
       <div className="flex justify-around items-center w-full header__inner">
         <p className="logo-text">Todo service</p>
         <nav className="flex gap-2 py-3 nav--list">
-          <Link to={"/"}>
+          <Link to={'/'}>
             <li className="list-item">Home</li>
           </Link>
 
           {isAuth ? (
             <>
-              <Link to={"/lists"}>
+              <Link to={'/lists'}>
                 <li className="list-item">My lists</li>
               </Link>
               <li>{email}</li>
@@ -29,7 +29,7 @@ const Header = () => {
                 <Button
                   variant="outlined"
                   sx={{
-                    color: "black",
+                    color: 'black',
                   }}
                   onClick={() => dispatch(removeUser())}
                 >
@@ -39,10 +39,10 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link to={"/register"}>
+              <Link to={'/register'}>
                 <li className="list-item">reg</li>
               </Link>
-              <Link to={"/login"}>
+              <Link to={'/login'}>
                 <li className="list-item">LOG</li>
               </Link>
             </>

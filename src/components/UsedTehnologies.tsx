@@ -1,8 +1,8 @@
-import React from "react";
-import { tehnologiesItems } from "../texnologies";
+import React from 'react';
+import { tehnologiesItems } from '../texnologies';
 
-import { AnimatePresence, motion } from "motion/react";
-import { UsedTehnologiesVar } from "../animation/animation";
+import { AnimatePresence, motion } from 'motion/react';
+import { UsedTehnologiesVar } from '../animation/animation';
 
 const UsedTehnologies = () => {
   return (
@@ -19,7 +19,7 @@ const UsedTehnologies = () => {
             <ul className="flex flex-col gap-5 w-[300px]">
               {tehnologiesItems.map((item) => (
                 <li className="flex items-center gap-12">
-                  {item.icon} <span>{item.title}</span>{" "}
+                  {item.icon} <span>{item.title}</span>{' '}
                 </li>
               ))}
             </ul>

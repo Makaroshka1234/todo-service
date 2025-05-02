@@ -1,5 +1,5 @@
-import { PieChart } from "@mui/x-charts";
-import React from "react";
+import { PieChart } from '@mui/x-charts';
+import React from 'react';
 
 interface ChartProps {
   checkedTodos: number;
@@ -16,8 +16,8 @@ const Chart = ({ checkedTodos, uncheckedTodos }: ChartProps) => {
       series={[
         {
           data: [
-            { id: 0, value: checkedTodos, label: "Complete" },
-            { id: 1, value: uncheckedTodos, label: "UnComplete" },
+            { id: 0, value: checkedTodos, label: 'Complete' },
+            { id: 1, value: uncheckedTodos, label: 'UnComplete' },
           ],
           innerRadius: 10,
           outerRadius: 70,

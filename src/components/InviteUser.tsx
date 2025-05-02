@@ -1,6 +1,6 @@
-import { Button, MenuItem, TextField } from "@mui/material";
-import React from "react";
-import { Role } from "../types/user";
+import { Button, MenuItem, TextField } from '@mui/material';
+import React from 'react';
+import { Role } from '../types/user';
 
 interface InviteUserProps {
   inviteEmail: string;
@@ -23,29 +23,29 @@ const InviteUser = ({
       <div className="flex gap-3 pb-2 w-full max-w-2xl">
         <TextField
           sx={{
-            background: "#414141",
-            color: "#fff",
-            borderColor: "#303030",
+            background: '#414141',
+            color: '#fff',
+            borderColor: '#303030',
             borderRadius: 2,
-            "& .MuiInputBase-input": {
-              color: "#fff",
+            '& .MuiInputBase-input': {
+              color: '#fff',
             },
-            "&:hover fieldset": {
-              borderColor: "#414141",
+            '&:hover fieldset': {
+              borderColor: '#414141',
             },
 
-            "& .MuiInputLabel-root": {
-              color: "#fff",
+            '& .MuiInputLabel-root': {
+              color: '#fff',
             },
-            "& .MuiOutlinedInput-root": {
-              "& fieldset": {
-                borderColor: "#303030", // стандартний бордер
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#303030', // стандартний бордер
               },
-              "&:hover fieldset": {
-                borderColor: "#414141", // бордер при наведенні
+              '&:hover fieldset': {
+                borderColor: '#414141', // бордер при наведенні
               },
-              "&.Mui-focused fieldset": {
-                borderColor: "#414141", // бордер коли фокус
+              '&.Mui-focused fieldset': {
+                borderColor: '#414141', // бордер коли фокус
               },
             },
           }}
@@ -55,29 +55,29 @@ const InviteUser = ({
         />
         <TextField
           sx={{
-            background: "#414141",
-            color: "#fff",
-            borderColor: "#303030",
+            background: '#414141',
+            color: '#fff',
+            borderColor: '#303030',
             borderRadius: 2,
-            "& .MuiInputBase-input": {
-              color: "#fff",
+            '& .MuiInputBase-input': {
+              color: '#fff',
             },
-            "&:hover fieldset": {
-              borderColor: "#414141",
+            '&:hover fieldset': {
+              borderColor: '#414141',
             },
 
-            "& .MuiInputLabel-root": {
-              color: "#fff",
+            '& .MuiInputLabel-root': {
+              color: '#fff',
             },
-            "& .MuiOutlinedInput-root": {
-              "& fieldset": {
-                borderColor: "#303030", // стандартний бордер
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#303030', // стандартний бордер
               },
-              "&:hover fieldset": {
-                borderColor: "#414141", // бордер при наведенні
+              '&:hover fieldset': {
+                borderColor: '#414141', // бордер при наведенні
               },
-              "&.Mui-focused fieldset": {
-                borderColor: "#414141", // бордер коли фокус
+              '&.Mui-focused fieldset': {
+                borderColor: '#414141', // бордер коли фокус
               },
             },
           }}
@@ -85,8 +85,8 @@ const InviteUser = ({
             MenuProps: {
               PaperProps: {
                 sx: {
-                  backgroundColor: "#414141", // колір бекграунда випадаючого меню
-                  color: "#fff", // колір тексту у меню
+                  backgroundColor: '#414141', // колір бекграунда випадаючого меню
+                  color: '#fff', // колір тексту у меню
                 },
               },
             },
@@ -98,9 +98,9 @@ const InviteUser = ({
         >
           <MenuItem
             sx={{
-              "&.Mui-selected": {
-                backgroundColor: "#616161",
-                color: "#fff",
+              '&.Mui-selected': {
+                backgroundColor: '#616161',
+                color: '#fff',
               },
             }}
             value="admin"
@@ -109,9 +109,9 @@ const InviteUser = ({
           </MenuItem>
           <MenuItem
             sx={{
-              "&.Mui-selected": {
-                backgroundColor: "#616161",
-                color: "#fff",
+              '&.Mui-selected': {
+                backgroundColor: '#616161',
+                color: '#fff',
               },
             }}
             value="viewer"
@@ -121,10 +121,10 @@ const InviteUser = ({
         </TextField>
         <Button
           sx={{
-            background: "#212121",
-            borderColor: "#ffffff26",
-            "&:hover": {
-              background: "#414141",
+            background: '#212121',
+            borderColor: '#ffffff26',
+            '&:hover': {
+              background: '#414141',
             },
           }}
           variant="contained"
